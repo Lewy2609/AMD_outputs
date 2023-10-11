@@ -122,17 +122,17 @@ EOF
 
 # 2 threads
 # RUN 1 (EXTRA)
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 # RUN 2 (EXTRA)
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
 
 # RUN 3
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_2.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_2_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_2.txt
 # RUN 4
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_2.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_2_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_2.txt
 # RUN 5
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_2.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_2_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 2 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_2.txt
 
 echo "Runtime, Throughput" >> p1_2.txt
 egrep '\[OVERALL\], RunTime\(ms\)' p1_2.txt | awk '{print $3}' >> p1_2.txt
@@ -151,12 +151,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_2.txt | awk '{print $3}' >> p
 
 # 4 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_4.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_4.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_4.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_4_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_4.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_4_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_4.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_4_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 4 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_4.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_4.txt | awk '{print $3}' >> p1_4.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_4.txt | awk '{print $3}' >> p1_4.txt
@@ -172,12 +172,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_4.txt | awk '{print $3}' >> p
 
 # 8 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_8.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_8.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_8.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_8_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_8.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_8_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_8.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_8_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 8 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_8.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_8.txt | awk '{print $3}' >> p1_8.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_8.txt | awk '{print $3}' >> p1_8.txt
@@ -193,12 +193,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_8.txt | awk '{print $3}' >> p
 
 # 12 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_12.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_12.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_12.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_12_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_12.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_12_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_12.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_12_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 12 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_12.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_12.txt | awk '{print $3}' >> p1_12.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_12.txt | awk '{print $3}' >> p1_12.txt
@@ -212,99 +212,99 @@ egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_12.txt | awk '{print $3}' >> 
 egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_12.txt | awk '{print $3}' >> p1_12.txt
 
 
-# 16 threads
+# # 16 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_16.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_16.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_16.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_16.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_16.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 16 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_16.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
-
-
-# 20 threads
-
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_16.txt | awk '{print $3}' >> p1_16.txt
 
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_20.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_20.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_20.txt
+# # 20 threads
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-
-egrep '\[READ\], AverageLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
 
-# 24 threads
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_20.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_20.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 20 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_20.txt
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_24.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_24.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_24.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-
-egrep '\[READ\], AverageLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_20.txt | awk '{print $3}' >> p1_20.txt
 
 
-# 28 threads
+# # 24 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_28.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_28.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_28.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_24.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_24.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 24 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_24.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_24.txt | awk '{print $3}' >> p1_24.txt
+
+
+# # 28 threads
+
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_28.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_28.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 28 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_28.txt
+
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+
+# egrep '\[READ\], AverageLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_28.txt | awk '{print $3}' >> p1_28.txt
 
 
 # 32 threads
 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_32.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_32.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_32.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_32_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_32.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_32_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_32.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_32_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 32 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_32.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_32.txt | awk '{print $3}' >> p1_32.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_32.txt | awk '{print $3}' >> p1_32.txt
@@ -320,12 +320,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_32.txt | awk '{print $3}' >> 
 
 # 36 threads
 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_36.txt 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_36.txt 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_36.txt 
+strace -c -S name -f -o >(cat >> strace_output_combined_36_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_36.txt 
+strace -c -S name -f -o >(cat >> strace_output_combined_36_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_36.txt 
+strace -c -S name -f -o >(cat >> strace_output_combined_36_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 36 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_36.txt 
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_36.txt | awk '{print $3}' >> p1_36.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_36.txt | awk '{print $3}' >> p1_36.txt
@@ -339,56 +339,56 @@ egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_36.txt | awk '{print $3}' >> 
 egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_36.txt | awk '{print $3}' >> p1_36.txt
 
 
-# 40 threads
+# # 40 threads
 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 
+# #numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# #numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 
 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_40.txt 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_40.txt 
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_40.txt 
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_40.txt 
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_40.txt 
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 40 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_40.txt 
 
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_40.txt | awk '{print $3}' >> p1_40.txt
 
-# 44 threads
+# # 44 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_44.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_44.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_44.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_44.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_44.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 44 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_44.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_44.txt | awk '{print $3}' >> p1_44.txt
 
 
 # 48 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_48.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_48.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_48.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_48_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_48.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_48_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_48.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_48_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 48 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_48.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_48.txt | awk '{print $3}' >> p1_48.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_48.txt | awk '{print $3}' >> p1_48.txt
@@ -406,12 +406,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_48.txt | awk '{print $3}' >> 
 
 # 52 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_52.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_52.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_52.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_52_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_52.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_52_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_52.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_52_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 52 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_52.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_52.txt | awk '{print $3}' >> p1_52.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_52.txt | awk '{print $3}' >> p1_52.txt
@@ -427,12 +427,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_52.txt | awk '{print $3}' >> 
 
 # 56 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_56.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_56.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_56.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_56_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_56.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_56_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_56.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_56_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 56 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_56.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_56.txt | awk '{print $3}' >> p1_56.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_56.txt | awk '{print $3}' >> p1_56.txt
@@ -448,12 +448,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_56.txt | awk '{print $3}' >> 
 
 # 60 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_60.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_60.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_60.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_60_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_60.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_60_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_60.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_60_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 60 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_60.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_60.txt | awk '{print $3}' >> p1_60.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_60.txt | awk '{print $3}' >> p1_60.txt
@@ -469,12 +469,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_60.txt | awk '{print $3}' >> 
 
 # 64 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_64.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_64.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_64.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_64_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_64.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_64_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_64.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_64_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 64 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_64.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_64.txt | awk '{print $3}' >> p1_64.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_64.txt | awk '{print $3}' >> p1_64.txt
@@ -490,12 +490,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_64.txt | awk '{print $3}' >> 
 
 # 68 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_68.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_68.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_68.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_68_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_68.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_68_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_68.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_68_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 68 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_68.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_68.txt | awk '{print $3}' >> p1_68.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_68.txt | awk '{print $3}' >> p1_68.txt
@@ -509,119 +509,119 @@ egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_68.txt | awk '{print $3}' >> 
 egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_68.txt | awk '{print $3}' >> p1_68.txt
 
 
-# 72 threads
+# # 72 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_72.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_72.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_72.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_72.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_72.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 72 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_72.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
-
-
-# 76 threads
-
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_76.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_76.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_76.txt
-
-egrep '\[OVERALL\], RunTime\(ms\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-
-egrep '\[READ\], AverageLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_72.txt | awk '{print $3}' >> p1_72.txt
 
 
-# 80 threads
+# # 76 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_80.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_80.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_80.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_76.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_76.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 76 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_76.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
-
-
-# 84 threads
-
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_84.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_84.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_84.txt
-
-egrep '\[OVERALL\], RunTime\(ms\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-
-egrep '\[READ\], AverageLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_76.txt | awk '{print $3}' >> p1_76.txt
 
 
-# 88 threads
+# # 80 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_88.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_88.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_88.txt
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_80.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_80.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 80 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_80.txt
 
-egrep '\[OVERALL\], RunTime\(ms\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
-egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
 
-egrep '\[READ\], AverageLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
-egrep '\[READ\], 95thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
-egrep '\[READ\], 99thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[READ\], AverageLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
 
-egrep '\[UPDATE\], AverageLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
-egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
-egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_80.txt | awk '{print $3}' >> p1_80.txt
+
+
+# # 84 threads
+
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_84.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_84.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 84 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_84.txt
+
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+
+# egrep '\[READ\], AverageLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_84.txt | awk '{print $3}' >> p1_84.txt
+
+
+# # 88 threads
+
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+
+# numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_88.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_88.txt
+# numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 88 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_88.txt
+
+# egrep '\[OVERALL\], RunTime\(ms\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+
+# egrep '\[READ\], AverageLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[READ\], 95thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[READ\], 99thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+
+# egrep '\[UPDATE\], AverageLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[UPDATE\], 95thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
+# egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_88.txt | awk '{print $3}' >> p1_88.txt
 
 
 # 92 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_92.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_92.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_92.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_92_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_92.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_92_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_92.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_92_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 92 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_92.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_92.txt | awk '{print $3}' >> p1_92.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_92.txt | awk '{print $3}' >> p1_92.txt
@@ -637,12 +637,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_92.txt | awk '{print $3}' >> 
 
 # 96 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_96.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_96.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_96.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_96_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_96.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_96_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_96.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_96_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 96 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_96.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_96.txt | awk '{print $3}' >> p1_96.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_96.txt | awk '{print $3}' >> p1_96.txt
@@ -658,12 +658,12 @@ egrep '\[UPDATE\], 99thPercentileLatency\(us\)' p1_96.txt | awk '{print $3}' >> 
 
 # 100 threads
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
+#numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0
 
-numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_100.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_100.txt
-numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_100.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_100_threads.txt) numactl  --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_100.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_100_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_100.txt
+strace -c -S name -f -o >(cat >> strace_output_combined_100_threads.txt) numactl --physcpubind=8,9,10,11,12,13,14,15,24,25,26,27,28,29,30,31 ./bin/ycsb run mongodb -s -P workloads/workloada -p recordcount=10000000 -p operationcount=1000 -p table=usertable1 -threads 100 -p requestdistribution=zipfian -p mongodb.url=mongodb://localhost:27017/ycsb?w=0 >> p1_100.txt
 
 egrep '\[OVERALL\], RunTime\(ms\)' p1_100.txt | awk '{print $3}' >> p1_100.txt
 egrep '\[OVERALL\], Throughput\(ops/sec\)' p1_100.txt | awk '{print $3}' >> p1_100.txt
