@@ -9,7 +9,7 @@ df=pd.read_csv('System_calls.csv')
 df.drop(df.columns[[0]], axis=1, inplace=True)
 average_data = df.groupby('Number of Threads').mean()
 
-# FOR ONE SYSTEM CALL ONLY
+# FOR ONE SYSTEM CALL ONLY - HISTOGRAM
 
 ######################
 
@@ -32,7 +32,7 @@ average_data = df.groupby('Number of Threads').mean()
 
 #######################
 
-# FOR ALL OR SELECTED SYSTEM CALLS
+# FOR ALL OR SELECTED SYSTEM CALLS - HISTOGRAM
 
 #######################
 
@@ -81,6 +81,9 @@ average_data = df.groupby('Number of Threads').mean()
 #     fig.delaxes(axes.flatten()[i])
 
 # plt.show()
+
+
+# FOR GROUPED BAR CHART
 
 #######################
 
