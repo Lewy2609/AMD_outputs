@@ -1159,6 +1159,7 @@ do
             #echo "count = $count"
             wait "$pid1" "$pid2" "$pid3" "$pid4"
             cat strace_output_combined_innerloop_4* >> strace_output_combined_finalloop_48_threads.txt 
+	    rm strace_output_combined_innerloop_4*
         fi
         rm logs.txt
 done
